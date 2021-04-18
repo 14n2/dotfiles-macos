@@ -12,6 +12,7 @@
 " Hacked from: https://github.com/amix/vimrc
 "
 " Sections:
+"    -> Plugins(vim-plug)
 "    -> General
 "    -> VIM user interface
 "    -> Colors and Fonts
@@ -25,9 +26,32 @@
 "    -> Spell checking
 "    -> Misc
 "    -> Helper functions
-"    -> Plugins(vim-plug)
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Plugins(vim-plug)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Install vim-plug if we don't already have it
+if empty(glob("~/.vim/autoload/plug.vim"))
+    " Ensure all needed directories exist
+    execute '!mkdir -p ~/.vim/plugged'
+    execute '!mkdir -p ~/.vim/autoload'
+    " Download the actual plugin manager
+    execute '!curl -fLo ~/.vim/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+endif
+" Specify a directory for plugins
+" Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
+
+"vvvvv Here goes all the plugins vvvvv
+Plug 'dracula/vim', { 'as': 'dracula' }
+"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+" Initialize plugin system
+" Automatically executes filetype plugin indent on and syntax enable.
+call plug#end()
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -412,28 +436,3 @@ function! VisualSelection(direction, extra_filter) range
     let @/ = l:pattern
     let @" = l:saved_reg
 endfunction
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Plugins(vim-plug)
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Install vim-plug if we don't already have it
-if empty(glob("~/.vim/autoload/plug.vim"))
-    " Ensure all needed directories exist
-    execute '!mkdir -p ~/.vim/plugged'
-    execute '!mkdir -p ~/.vim/autoload'
-    " Download the actual plugin manager
-    execute '!curl -fLo ~/.vim/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-endif
-" Specify a directory for plugins
-" Avoid using standard Vim directory names like 'plugin'
-call plug#begin('~/.vim/plugged')
-
-"vvvvv Here goes all the plugins vvvvv
-Plug 'dracula/vim', { 'as': 'dracula' }
-"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-"
-" Initialize plugin system
-" Automatically executes filetype plugin indent on and syntax enable.
-call plug#end()
-" <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
