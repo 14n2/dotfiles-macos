@@ -139,6 +139,7 @@ alias top="bpytop"
 alias so="source"
 alias c="clear"
 # git extended aliases
+alias gt="git tag"
 alias gta="git tag -a"
 alias gtn="git tag -n"
 alias gpft="git push --follow-tags"
