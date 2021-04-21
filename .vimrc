@@ -45,8 +45,65 @@ endif
 " Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
 
-"vvvvv Here goes all the plugins vvvvv
+"vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv Here goes all the plugins
 Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+"vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv Here goes all the plugin settings
+" => vim-better-whitespace
+let g:better_whitespace_ctermcolor='black'
+let g:better_whitespace_guicolor='#000000'
+nnoremap ]w :NextTrailingWhitespace<CR>
+nnoremap [w :PrevTrailingWhitespace<CR>
+
+" => nerdtree
+nnoremap <leader>t :NERDTreeToggle<CR>
+nnoremap <leader>f :NERDTreeFind<CR>
+
+" => vim-airline
+let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.crypt = '🔒'
+let g:airline_symbols.linenr = '並'
+let g:airline_symbols.linenr = 'Ξ'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.maxlinenr = '㏑'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.spell = 'Ꞩ'
+let g:airline_symbols.notexists = 'Ɇ'
+let g:airline_symbols.whitespace = 'Ξ'
+" powerline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = '並'
+let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.dirty='⚡'
+" theme
+let g:airline_theme='dracula'
 "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 " Initialize plugin system
@@ -57,7 +114,10 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Sets how many lines of history VIM has to remember
+" Set mouse available
+set mouse=a
+
+" Set how many lines of history VIM has to remember
 set history=500
 
 " Enable filetype plugins
@@ -77,7 +137,7 @@ let mapleader = "\\"
 nmap <leader>w :w!<cr>
 imap <leader>w <esc>:w!<cr>
 
-" :W sudo saves the file 
+" :W sudo saves the file
 " (useful for handling the permission-denied error)
 command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 
@@ -89,7 +149,7 @@ command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 set so=5
 
 " Avoid garbled characters in Chinese language windows OS
-let $LANG='en' 
+let $LANG='en'
 set langmenu=en
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
@@ -121,23 +181,23 @@ set whichwrap+=<,>,h,l
 " Ignore case when searching
 set ignorecase
 
-" When searching try to be smart about cases 
+" When searching try to be smart about cases
 set smartcase
 
 " Highlight search results
 set hlsearch
 
 " Makes search act like search in modern browsers
-set incsearch 
+set incsearch
 
 " Don't redraw while executing macros (good performance config)
-set lazyredraw 
+set lazyredraw
 
 " For regular expressions turn magic on
 set magic
 
 " Show matching brackets when text indicator is over them
-set showmatch 
+set showmatch
 " How many tenths of a second to blink when matching brackets
 set mat=2
 
@@ -173,14 +233,14 @@ let &colorcolumn=join(range(80,999),",")
 
 " Display whitespace characters
 set list
-set listchars=tab:\ ,trail:,extends:,precedes:,nbsp:,eol:
+set listchars=tab:\ ,trail:,extends:,precedes:,nbsp:,eol:
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable syntax highlighting
-syntax enable 
+syntax enable
 
 " Enable 256 colors palette in Gnome Terminal
 if $COLORTERM == 'gnome-terminal'
@@ -258,10 +318,6 @@ vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 map j gj
 map k gk
 
-" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-map <space> /
-map <C-space> ?
-
 " Toggle highlight when <leader><space> is pressed
 map <silent> <leader><space> :set hlsearch! hlsearch?<cr>
 
@@ -284,7 +340,7 @@ map <leader>h :bprevious<cr>
 map tn :tabnew<cr>
 map to :tabonly<cr>
 map td :tabclose<cr>
-map tm :tabmove 
+map tm :tabmove
 map th :tabprev<cr>
 map tl :tabnext<cr>
 
@@ -301,7 +357,7 @@ map tt :tabedit <C-r>=expand("%:p:h")<cr>/
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
-" Specify the behavior when switching between buffers 
+" Specify the behavior when switching between buffers
 try
   set switchbuf=useopen,usetab,newtab
   set stal=2
@@ -319,7 +375,7 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 set laststatus=2
 
 " Format the status line
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
+" set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -418,7 +474,7 @@ endfunction
 
 function! CmdLine(str)
     call feedkeys(":" . a:str)
-endfunction 
+endfunction
 
 function! VisualSelection(direction, extra_filter) range
     let l:saved_reg = @"
