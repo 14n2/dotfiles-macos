@@ -16,7 +16,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/ianz/.oh-my-zsh"
@@ -126,6 +127,9 @@ source $ZSH/oh-my-zsh.sh
 
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
+
+export JEKYLL_GITHUB_TOKEN="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"
+export SSL_CERT_FILE="/Users/ianz/Documents/www/cacert.pem"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh

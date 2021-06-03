@@ -65,6 +65,7 @@ nnoremap [w :PrevTrailingWhitespace<CR>
 
 " => nerdtree
 nnoremap <leader>t :NERDTreeToggle<CR>
+nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <leader>f :NERDTreeFind<CR>
 
 " => vim-airline
@@ -131,11 +132,10 @@ au FocusGained,BufEnter * checktime
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
 " let mapleader = ","
-let mapleader = "\\"
 
 " Fast saving
-nmap <leader>w :w!<cr>
-imap <leader>w <esc>:w!<cr>
+nnoremap <leader>w :w!<cr>
+inoremap <leader>w <esc>:w!<cr>
 
 " :W sudo saves the file
 " (useful for handling the permission-denied error)
@@ -385,7 +385,7 @@ set laststatus=2
 " => Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remap VIM 0 to first non-blank character
-map 0 ^
+"map 0 ^
 
 " Move a line of text using ALT+[jk] or Command+[jk] on mac
 nmap <M-j> mz:m+<cr>`z
