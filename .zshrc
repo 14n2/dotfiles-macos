@@ -139,7 +139,6 @@ export SSL_CERT_FILE="/Users/ianz/Documents/www/cacert.pem"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias top="bpytop"
 alias so="source"
 alias c="clear"
 # git extended aliases
